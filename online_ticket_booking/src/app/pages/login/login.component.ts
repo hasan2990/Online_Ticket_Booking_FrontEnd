@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { log } from 'console';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,25 +17,20 @@ export class LoginComponent {
 
   loginObj: Login;
 
-  constructor(private http: HttpClient,private router: Router) {
+  constructor(private http: HttpClient,private router: Router, private auth: AuthService) {
     this.loginObj = new Login();
   }
 
   onLogin() {
-    console.log(this.loginObj);
-    //debugger;
-    this.http.post('https://localhost:44320/api/login', this.loginObj).subscribe((res:any)=>{
-      if(res.result) {
-        alert("Login Success");
-        localStorage.setItem('angular17token', res.data.token)
-        this.router.navigateByUrl('/dashboard')
-      } else {
-        console.log(res.email);
-        console.log(res.token);
-        alert("Token = "+ res.token)  
+    this.auth.LoginUser(this.loginObj).subscribe((response:any)=>{
+      if(response.token) {
+        alert("Login Success. Token = "+ response.token);
       }
-    })
-  }
+      else {
+        alert("Invalid Username or Password");
+      }
+    });
+}
 }
 
 export class Login {

@@ -6,20 +6,26 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { FormsModule } from '@angular/forms';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+//import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     AppComponent,
+    //RegisterComponent,
   ],
   imports: [
     LayoutComponent,
     LoginComponent,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
