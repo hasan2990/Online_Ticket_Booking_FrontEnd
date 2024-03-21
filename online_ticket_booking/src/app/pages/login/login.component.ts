@@ -25,15 +25,18 @@ export class LoginComponent {
     this.router.navigate(['register']);
   }
   onLogin() {
-    debugger;
-    this.auth.LoginUser(this.loginObj).subscribe((response:any)=>{
-      if(response.token) {
-        alert("Login Success. Token = "+ response.token);
+    //debugger;
+    var loginSubscription = this.auth.LoginUser(this.loginObj).subscribe((response:any)=>{
+      if(response.isSuccess === true) {
+        alert(response.statusMessage + "\nToken = " + response.token);
       }
       else {
-        alert("Invalid Username or Password");
+        alert("Invalid Password");
       }
-    });
+    }, error => {
+      alert("An error occurred while trying to log in. Please check your Email.");
+      console.error("Login Error:", error); 
+  });
   }
  }
 export class Login {

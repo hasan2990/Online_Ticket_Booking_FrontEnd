@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 
 export class RegisterComponent {
 RegisterObj: Register;
+email: any;
 
 constructor(private http: HttpClient,private router: Router, private auth: AuthService) {
   this.RegisterObj = new Register();
@@ -25,8 +26,13 @@ onLog(){
 }
   onRegistration() {
     debugger;
-    this.auth.RegisterUser(this.RegisterObj).subscribe((response:any)=>{
+    this.auth.RegisterUser(this.RegisterObj).subscribe((response:any)=>{ 
+      if(response.isSuccess === true){
         alert("Successfully Registered");
+      }
+      else{
+        alert(response.statusMessage);
+      }
     },
     (error: any) => {
         console.error("Registration failed:", error);

@@ -17,31 +17,20 @@
     align-items: center;
 }
 .container span {
-    position: absolute;
-    left: 0;
+    //position: absolute;
+    //left: 0;
     width: 32px;
     height: 6px;
-    background: #2c4766;
     border-radius: 8px;
-    transform-origin: 128px;
-    transform: scale(2.2) rotate(calc(var(--i) * (360deg / 50)));
-    animation: animateBlink 3s linear infinite;
-    animation-delay: calc(var(--i) * (3s / 50));
 }
-@keyframes animateBlink {
-    0% {
-        background: #0ef;
-    }
-    25% {
-        background: #2c4766;
-    }
-}
-.login-box {
+
+.registration-box {
     position: absolute;
     width: 400px;
 }
-.login-box form {
+.registration-box form {
     width: 100%;
+    height: auto;
     padding: 0 50px;
 }
 h2 {
@@ -58,19 +47,19 @@ h2 {
     height: 50px;
     background: transparent;
     border: 2px solid #2c4766;
-    outline: none;
+    //outline: none;
     border-radius: 40px;
     font-size: 1em;
     color: #fff;
     padding: 0 20px;
-    transition: .5s ease;
+    //transition: .5s ease;
 }
 .input-box input:focus,
 .input-box input:valid {
     border-color: #0ef;
 }
 .input-box label {
-    position: absolute;
+    //position: absolute;
     top: 50%;
     left: 20px;
     transform: translateY(-50%);
@@ -87,18 +76,6 @@ h2 {
     padding: 0 6px;
     color: #0ef;
 }
-.forgot-pass {
-    margin: -15px 0 10px;
-    text-align: center;
-}
-.forgot-pass a {
-    font-size: .85em;
-    color: #fff;
-    text-decoration: none;
-}
-.forgot-pass a:hover {
-    text-decoration: underline;
-}
 .btn {
     width: 100%;
     height: 45px;
@@ -111,21 +88,27 @@ h2 {
     color: #1f293a;
     font-weight: 600;
 }
-.signup-link {
-    margin: 20px 0 10px;
-    text-align: center;
-}
-.signup-link a {
-    font-size: 1em;
-    color: #0ef;
-    text-decoration: none;
-    font-weight: 600;
-}
-.signup-link a:hover {
-    text-decoration: underline;
-}
+
 .button{
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
+
+.help-block {
+    display: block;
+    margin-left: 20px;
+    margin-top: 5px; 
+    margin-bottom: 10px;
+    font-size: 0.8em; 
+    color: #eeebeb; 
+  }
+  
+  .help-block.ng-touched {
+    display: block; 
+  }
+  
+  .help-block.ng-touched + label {
+    color: #eeebeb;
+  }
+  
