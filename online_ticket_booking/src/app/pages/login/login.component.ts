@@ -29,6 +29,8 @@ export class LoginComponent {
     var loginSubscription = this.auth.LoginUser(this.loginObj).subscribe((response:any)=>{
       if(response.isSuccess === true) {
         alert(response.statusMessage + "\nToken = " + response.token);
+        this.router.navigate(['dashboard']);
+        //this.router.navigate(['getbuses']);
       }
       else {
         alert("Invalid Password");

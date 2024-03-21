@@ -16,7 +16,6 @@ import { CommonModule } from '@angular/common';
 
 export class RegisterComponent {
 RegisterObj: Register;
-email: any;
 
 constructor(private http: HttpClient,private router: Router, private auth: AuthService) {
   this.RegisterObj = new Register();

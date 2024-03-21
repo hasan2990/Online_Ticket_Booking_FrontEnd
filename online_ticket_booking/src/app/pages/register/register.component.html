@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="input-box">
-                    <input id="phone_number" required pattern="([1-9]{1}[0-9]{9})$"
+                    <input id="phone_number" required pattern="^(?:\+?88|01)?(?:\d{11})$"
                     name="phone_number"#phone_number="ngModel"[(ngModel)]="RegisterObj.phone_number">
                     
                     <label>phone_number</label>
