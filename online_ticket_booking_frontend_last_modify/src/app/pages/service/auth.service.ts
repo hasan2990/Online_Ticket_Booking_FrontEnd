@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Login} from '../login/login.component';
 import { Register } from '../register/register.component';
-import { GetBuses } from '../getbuses/getbuses.component';
+import { map } from 'rxjs/operators';
+import { PriceInfo, SelectedBusesResponse } from '../Models/SelectedBusesResponse.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,10 @@ export class AuthService {
   RegisterUser(RegisterObj : Register) : Observable<Register>{
     return this.http.post<Register>(this.baseApiUrl + '/registration', RegisterObj);
   }
-  GetBusesByUser(UserObj : GetBuses) : Observable<GetBuses>{
-    return this.http.post<GetBuses>(this.baseApiUrl + '/GetBuses', UserObj);
+
+  getBusesById(source_id: number, destination_id: number): Observable<SelectedBusesResponse> {
+    return this.http.get<any>(`${this.baseApiUrl}/GetBuses/GetBusDetails?source_id=${source_id}&destination_id=${destination_id}`);
   }
-  
+
 }
+

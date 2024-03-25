@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
   loginObj: Login;
 
   constructor(private http: HttpClient,private router: Router, private auth: AuthService) {
@@ -25,21 +26,19 @@ export class LoginComponent {
     this.router.navigate(['register']);
   }
   onLogin() {
-    debugger;
-    this.auth.LoginUser(this.loginObj).subscribe((response:any)=>{
-      if(response.isSuccess === true) {
+    this.auth.LoginUser(this.loginObj).subscribe((response: any) => {
+      if (response.isSuccess === true) {
         alert(response.statusMessage + "\nToken = " + response.token);
-        this.router.navigate(['dashboard']);
-        //this.router.navigate(['getbuses']);
-      }
-      else {
-        alert("Invalid Password");
+        this.router.navigate(['dashboard']); 
+      } else {
+        alert("Invalid Password or Username"); 
       }
     }, error => {
       alert("An error occurred while trying to log in. Please check your Email.");
-      console.error("Login Error:", error); 
-  });
+      console.error("Login Error:", error);
+    });
   }
+
  }
 export class Login {
   email: string;

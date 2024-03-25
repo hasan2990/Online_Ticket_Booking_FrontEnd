@@ -8,13 +8,15 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { GetbusesComponent } from './pages/getbuses/getbuses.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { UserbusinfoComponent } from './pages/userbusinfo/userbusinfo.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     AppComponent,
+    UserbusinfoComponent,
+
     
   ],
   imports: [
@@ -26,7 +28,6 @@ import { RegisterComponent } from './pages/register/register.component';
     CommonModule,
     ReactiveFormsModule,
     RegisterComponent,
-    GetbusesComponent,
   ],
   providers: [
     provideClientHydration(),
