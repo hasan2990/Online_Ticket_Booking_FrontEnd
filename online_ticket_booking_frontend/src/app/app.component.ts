@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'online_ticket_booking_frontend';
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
 
   onLogout() {
     console.log("Log Out");
