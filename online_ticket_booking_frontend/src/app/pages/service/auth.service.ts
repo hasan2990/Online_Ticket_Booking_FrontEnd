@@ -5,6 +5,7 @@ import { Login} from '../login/login.component';
 import { Register } from '../register/register.component';
 import { map } from 'rxjs/operators';
 import { PriceInfo, SelectedBusesResponse } from '../Models/SelectedBusesResponse.model';
+import { RegionResponse } from '../Models/RegionResponse.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +27,7 @@ export class AuthService {
     return this.http.get<any>(`${this.baseApiUrl}/GetBuses/GetBusDetails?source_id=${source_id}&destination_id=${destination_id}`);
   }
 
-  // getUserProfile(): Observable<any> {
-  //   return this.http.get<any>(this.baseApiUrl + '/userProfile', {
-  //   });
-  // }
+  getRegions(): Observable<RegionResponse>{
+    return this.http.get<any>(`${this.baseApiUrl}/Region/GetRegionDetails`);
+  }
 }
-

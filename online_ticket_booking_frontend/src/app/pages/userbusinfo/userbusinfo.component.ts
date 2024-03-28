@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { PriceInfo } from '../Models/SelectedBusesResponse.model';
+import { Region } from '../Models/RegionResponse.model';
 
 @Component({
   selector: 'app-userbusinfo',
@@ -14,6 +15,7 @@ export class UserbusinfoComponent implements OnInit {
   source_id: any;
   destination_id: any;
   flag: boolean=false;
+  regioninfo: Region[]=[];
 
 
   constructor(private http: HttpClient, private router: Router, private auth: AuthService) { }
@@ -24,7 +26,6 @@ export class UserbusinfoComponent implements OnInit {
     const Vtoken = JSON.parse(user);
     var token = Vtoken.token;
     console.log(token);
-    
     if (token==null) {
       alert('Login First')
       this.router.navigate(['/login']);
@@ -32,9 +33,13 @@ export class UserbusinfoComponent implements OnInit {
     else {
       this.flag = true;
     }
+    this.onSearchRegion();
    
   }
   onSearchOption() {
+    console.log(this.source_id);
+    console.log(this.destination_id);
+    
     if (this.source_id && this.destination_id && this.flag) {
       this.auth.getBusesById(this.source_id, this.destination_id).subscribe(response => {
         console.log("OnSearchOption");
@@ -54,5 +59,22 @@ export class UserbusinfoComponent implements OnInit {
       });
     }
   }
-  
+  onSearchRegion(){
+    if(this.flag) {
+      this.auth.getRegions().subscribe(response => {
+        console.log("OnSearchRegion");
+        if(response.isSuccess) {
+          //alert("Regions are available");
+          console.log(response);
+          this.regioninfo = response.listregion;
+          console.log(this.regioninfo);
+          if (this.regioninfo) {
+            console.log(this.regioninfo.length);
+          } else {
+            console.log("No region information available");
+          }
+        }
+      });
+    }
+  }
 }
